@@ -1,0 +1,51 @@
+{
+    "desc": "dwh-gwp_object_changed",
+    "sourceConnection": "dwh",
+    "destinationConnection": "dwh",
+    "query": "query.sql",
+    "crtKey": "2023-08-21 18:08:54",
+    "manualDeleteNotExisting": true,
+    "keyField": "change_date",
+    "ignoreChangesForColumns": [
+        "change_date"
+    ],
+    "crtKeyType": "date",
+    "resetKey": "1900-1-1",
+    "autoclean": false,
+    "noOfRows": "select count(*) from dual where 1 = 0",
+    "fetchsize": 100,
+    "checkKeyExists": false,
+    "pk": [
+        "acc_date",
+        "insr_type",
+        "codcomp"
+    ],
+    "destinationTable": "gwp_object_changed",
+    "stagingId": "gwp_object_changed_sq.nextval",
+    "dataTiggers": [],
+    "oltpDataTiggers": [
+        "reload_gwp_objects_lobs"
+    ],
+    "integrityTrigger": {
+        "name": "checkIntegrity",
+        "result": [
+            {
+                "acc_date": "2023-08-22 00:00:00",
+                "codcomp": 60,
+                "insr_type": 6902,
+                "premium": 8e-15
+            }
+        ]
+    },
+    "checkOltp": "select count(*) from dual",
+    "checkStaging": "select count(*) from dual",
+    "checkResult": [
+        {
+            "name": "cnt",
+            "oltp": 1.0,
+            "staging": 1.0,
+            "dif": 0.0
+        }
+    ],
+    "resetDate": "2023-03-27T17:55:14.014478"
+}

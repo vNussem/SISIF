@@ -1,0 +1,43 @@
+{
+    "desc": "dwh-gwp_object",
+    "sourceConnection": "dwh",
+    "destinationConnection": "dwh",
+    "query": "query.sql",
+    "crtKey": "2023-05-3",
+    "manualDeleteNotExisting": true,
+    "keyField": "change_date",
+    "ignoreChangesForColumns": ["change_date"],
+    "crtKeyType": "date",
+    "resetKey": "1900-1-1",
+    "autoclean": false,
+    "noOfRows": "select count(*) from gwp where change_date >= to_date(':crtKey', 'yyyy-mm-dd hh24:mi:ss. ') and change_date is not null",
+    "checkOltp": "select count(*) from gwp",
+    "checkStaging": "select count(*) cnt from gwp where change_date is not null",
+    "checkResult": [
+        {
+            "name": "cnt",
+            "oltp": 49763398.0,
+            "staging": 436039.0,
+            "dif": 49327359.0
+        }
+    ],
+    "fetchsize": 1000,
+    "checkKeyExists": true,
+    "pk": [
+        "install_id",
+        "acc_date",        
+        "insr_type",
+        "cover_type",
+        "object_id",
+        "insured_obj_id",
+        "pif_staging_id",
+        "policy_id",
+        "helper",
+        "is_cancelled"
+    ],
+    "destinationTable": "gwp_object",
+    "stagingId": "gwp_object_sq.nextval",
+    "dataTiggers": [],
+    "_oltpDataTiggers": ["update_or_insert_gwp_object_changed"],
+    "resetDate": "2023-03-27T17:55:14.014478"
+}

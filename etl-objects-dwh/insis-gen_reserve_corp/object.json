@@ -1,0 +1,23 @@
+{
+    "desc": "insis-gen_reserve_corp",
+    "query": "query.sql",
+    "fetchsize": 1000,
+    "staging_table": "insis_gen_reserve_corp",
+    "helper": "abis.plugin.asirom.dwh.DWHelperInsis_GenReserveCorp",
+    "dwh_table": "upr",
+    "noOfRows": "select count(*) from insis_gen_reserve_corp where (dwh_inserted is null or (deleted_date is not null and dwh_deleted is null))",
+    "processRows": [
+        "processRows",
+        "processRows-insrClass"
+    ],
+    "integrityTrigger": {
+        "name": "checkIntegrity",
+        "result": [
+            {
+                "cnt_stg": 35573709,
+                "cnt_dwh": 35573709,
+                "cnt_diff": 0
+            }
+        ]
+    }
+}

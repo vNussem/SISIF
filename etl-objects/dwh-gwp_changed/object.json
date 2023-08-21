@@ -1,0 +1,31 @@
+{
+    "desc": "dwh-gwp_changed",
+    "sourceConnection": "dwh",
+    "destinationConnection": "dwh",
+    "query": "query.sql",
+    "crtKey": "2023-08-21 12:18:14",
+    "manualDeleteNotExisting": true,
+    "keyField": "change_date",
+    "ignoreChangesForColumns": [],
+    "crtKeyType": "date",
+    "resetKey": "1900-1-1",
+    "autoclean": false,
+    "noOfRows": "select count(*) from gwp where change_date >= to_date(':crtKey', 'yyyy-mm-dd hh24:mi:ss. ') and change_date is not null and cover_type not in ('MI1') and policy_id is not null",
+    "fetchsize": 1000,
+    "checkKeyExists": false,
+    "pk": [
+        "gwp_staging_id"
+    ],
+    "destinationTable": "gwp_changed",
+    "stagingId": "gwp_changed_sq.nextval",
+    "dataTiggers": [],
+    "oltpDataTiggers": [
+        "fgl_reload_by_installment_id",
+        "non_fgl_reload_by_policy_id"
+    ],
+    "integrityTrigger": {
+        "name": "delete_provisionally",
+        "result": []
+    },
+    "resetDate": "2023-03-27T17:55:14.014478"
+}
